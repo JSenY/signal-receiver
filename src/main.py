@@ -39,16 +39,6 @@ revert_keys = ""  # default: press twice
 
 log_callback = None
 
-# Check if running as app or script
-def resource_path(relative_path):
-    """Get absolute path to resource, works for dev and for PyInstaller"""
-    try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
-
 def log(message):
     if log_callback:
         timestamp = datetime.datetime.now().strftime("%H:%M:%S")
@@ -198,13 +188,6 @@ def create_ui():
     root.geometry(f"{window_width}x{window_height}+{x}+{y}")
     root.resizable(False, False)
     
-    # Set app icon if available
-    try:
-        icon_path = resource_path('icon.icns')
-        if platform.system() == 'Darwin' and os.path.exists(icon_path):
-            root.iconbitmap(default=icon_path)
-    except:
-        pass
     
     # Main container
     main_frame = tk.Frame(root, padx=20, pady=20)
