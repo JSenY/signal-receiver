@@ -1,0 +1,14 @@
+name: Test Runner
+
+on:
+  workflow_dispatch:  # Manual trigger only
+
+jobs:
+  test:
+    runs-on: macos-12
+    steps:
+      - name: Just test if runner works
+        run: |
+          echo "Runner is working!"
+          sw_vers
+          uname -a
